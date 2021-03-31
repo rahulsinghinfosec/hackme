@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Introduction To Malware</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <link href="../css/styles.css" rel="stylesheet" />
+        <link href="../js/scripts.js">
+        <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+       <style>
+        img
+        {
+            display: flex;
+            margin:5px auto 10px auto;
+        }
+    </style>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="../../index.html"><img src="../images/Hackme.png" style="max-width: 2.5rem; margin-left: 1rem;" alt="logo"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="../../blog.html">BLOG</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../../about.html">ABOUT ME</a>
+                  </li>
+              </ul>
+            </div>
+          </nav>
+        <header class="container">
+            <h1>Viruses And Worms</h1>
+            <img src="https://www.guru99.com/images/EthicalHacking/Virus.png" alt="Virus & Worms" class="img-fluid" style="max-width: 100%;">
+        </header>
+        <div class="container">
+            <h3>Virus:</h3>
+            <p>A computer virus is a type of malware that can reproduce itself.In order for it to execute, the victim must execute the program/softaware/application into which it is embeded.</p>
+            <p>It can replicate itself through file systems and even networks.Depending upon their design, they may or may not cause any problem. Further some are invisible while others are annoying in their activity.</p>
+            <h5>Virus Types:</h5>
+            <p><u><strong>Program Viruses</strong></u>: These are viruses that are a part of a program and execute as soom as the program is executed.</p>
+            <p><u><strong>Boot Sector Virus</strong></u>: Some viruses are installed as a part of boot sector. They don't even need the OS in order to function.They can be pretty hard to remove.</p>
+            <p><u><strong>Script Virus</strong></u>: They run as scripts and are generally associated with the OS and the browsers.</p>
+            <p><u><strong>Macro Virus</strong></u>: Common in MS Office. They are associated with speadsheets or word processing applications.</p>
+        </div>
+        <div class="container">
+            <h3>Prevention:</h3>
+            <ul>
+                <li>Update your antivirus <br> <span class="text-muted">Anti-viruses are softwares that have signatures of viruses in its database.While scanning a file,it checks for its signature against the ones in its database to verify if the file is indeed a virus or not.</span></li>
+                <li>Only install softwares and applications from sources that you trust.</li>
+            </ul>
+        </div>
+        <div class="container" id="worms">
+            <h3>Worms</h3>
+            <p>They are malwares that self replicate and for doing so they do not need any human intervention (eg.You don't have to execute a progam, like in the case of a virus).</p>
+            <p>They use network as a transmission medium.They can be hard to contain as they spread very quickly.</p>
+            <p><strong>Example: WannaCry Worm, Nachi Worm,etc</strong></p>
+            
+        </div>
+        <div class="container">
+            <h3>Prevention:</h3>
+            <ul>
+                <li>Installing Firewalls,IDS/IPS</li>
+                <li>Updating your Anti-Virus</li>
+            </ul>
+        </div>
+        <iframe src="https://www.youtube.com/embed/f3eIERxYHhY" frameborder="0" style="display: flex;margin: auto;"width="520" height="315"></iframe>
+    </body>
+</html>

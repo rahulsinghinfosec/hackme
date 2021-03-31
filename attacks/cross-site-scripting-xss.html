@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>XSS:Cross Site Scripting</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+        <style>
+            img
+            {
+                display: flex;
+                margin:5px auto 1rem auto;
+            }
+        </style>
+
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="index.html">ICON_LOGO</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="../blog.html">BLOG</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../about.html">ABOUT ME</a>
+                  </li>
+              </ul>
+            </div>
+          </nav>
+        <header class="container">
+            <h1>XSS: Cross Site Scripting</h1>
+            <img src="https://portswigger.net/web-security/images/cross-site-scripting.svg" alt="XSS" style="max-width:100%">
+        </header>
+        <div class="container" id="description">
+            <h3>Description:</h3>
+            <p>XSS stands for Cross Site Scripting.It is one of the most prevelant web vulnerabilities found in the world. <br>
+            In this type of attack an attacker can inject malicious code into a web application, which when rendered to a victim can result in compromising his/her session with the web application.</p>
+            <p>This type of attack commonly occurs when the web application accepts the input from users but does not validate/sanitize or encode it.</p>
+            <h5><u>But How?</u></h5>
+            <p>The attacker sends a malicious script to a victim, and since the browser has no way to check its authenticity, its ends up executing it. The malicious script could gather the session tokens,cookies and other details of the victim and send them to the attacker. <br>  The attacker can then use the tokens/cookies to impersonate as the victim and entirely compormise the account of the victim. <br> He could change the email-id/password or any other critical information.</p>
+            <p><strong>If the victim compromised had administrative privileges, the attacker could compromise the entire web server, and even bring it down.</strong></p>
+            <p class="text-muted">A bug bounty hacker was able to trigger XSS by exploiting a vulnerability in Zoom.us application.</p>
+        </div>
+        <div class="container" id="types">
+            <p>Types of XSS</p>
+            <ol>
+                <li><a href="reflected-xss.html">Reflected XSS</a></li>
+                <li><a href="stored-xss.html">Stored XSS</a></li>
+                <li><a href="dom-based-xss.html">DOM-Based XSS</a></li>
+            </ol>
+        </div>
+        <div class="container">
+            <p>The most basic of the XSS Attacks is the Reflected XSS Attack. It occurs when a victim triggers a malicious script and causes it to be reflected off the web applicaion to the victim's browser. It called a <strong>Non-Persistent XSS Attack</strong>. <br>
+                Read more about Reflected XSS Attacks <a href="reflected-xss.html">Here</a>.</p>
+            <p>Also known as Persistent XSS and Second-Order XSS, Stored XSS Attack Occurs when the web application accepts any client injected malicios script and stores it in the web server. The malicious script is then rendered to the victims as a part of the response from the web application. <br> 
+                Read more about Stored XSS Attacks <a href="stored-xss.html">Here</a>.</p>
+            <p>DOM-Based XSS attack is a type of XSS attack where the web application takes in data and writes it in the Document Object Model. An attacker can manually alter this code to execute malicious javascript code. They are also called Type 0 XSS attacks.<br> Read more about it <a href="dom-based-xss.html">Here</a>.</p>
+        </div>
+        
+    </body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>OS Command Injection</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+        <style>
+            td, th {
+            border: 1px solid black;
+            text-align: left;
+            }
+            tr:nth-child(even) {
+                background-color: #dddddd;
+            }
+        </style>
+    </head>
+    <body> 
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="index.html">ICON_LOGO</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="../blog.html">BLOG</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../about.html">ABOUT ME</a>
+                  </li>
+              </ul>
+            </div>
+          </nav>
+        <header class="container">
+            <h1>OS Command Injection</h1>
+            <img src="../images/webattacks/os-command.png" alt="os-command Injection" class="img-fluid" style="max-width: 100%;max-height: 500px; display: flex; margin: 0 auto 15px auto;">
+        </header>
+        <div class="container">
+            <h3>Description:</h3>
+            <p>This is a web application vulnerability that allows an attacker to execute arbitrary operating system commands on the web server thereby compromising it completely. This typically occurs if there is no validation of the user-supplied input and the os commands are being being called directly from the web application, and being run on a system shell.
+                <br>
+              <span class="text-muted">NOTE : The Commands passed in the query run with the privileges of the vulnerable application.</span></p>
+        </div>
+        <div class="container">
+            <h3>Execution of commands</h3>
+            <p>For example : Let us consider a C program that lets you view the files in the current directory.</p>
+            <code>
+                #include <dirent.h> <br>#include <stdio.h> <br>
+                    int main(void) <br>
+                    { <br>DIR *d; <br> struct dirent *dir; <br>d = opendir("."); <br>if (d) <br>{
+                           <br> while ((dir = readdir(d)) != NULL) <br> { <br> printf("%s\n", dir->d_name); <br> }
+                           <br> closedir(d); <br>}
+                       <br> return(0); <br>}
+                    
+            </code>
+            <p style="margin-top: 1rem;">
+                Lets save this is dirlist and check the output. <br>
+                <strong>$</strong> ./dirlist <br>
+                OUTPUT : temp.c 1.c 2.c</p>
+            <p>If I add a semicolon and add another command to it, then becomes a classic example of Command Injection, where we are just extending the default functionality of the program.</p>
+            <p>
+                <strong>$</strong> ./dirlist ; cat 1.c <br>
+                OUTPUT : temp.c 1.c 2.c
+            </p>
+            <code>
+                #include<stdio.h>
+                int main()
+                {
+                printf("This is for testing purposes only");
+                return 0;
+                }
+            </code>
+            <p>You may note that both the program and our command ran successfully. <br>
+                As I had mentioned earlier that the command runs with the privileges of the application. However, if the permission given to the application are that of the root user (Administrator in windows) this can be disasterous.</p>
+        </div>
+        <div class="container">
+            <p>
+                Lets consider a website that uses a script to check the commodities. <br>
+               <span style="color: blue;"><u>https://www.example.com/Cycles?ID=123&countryID=123</u></span> </p>
+               <p>Suppose, in the server, a script called ape.py is run with ID and countryID as its parameters.
+                <br>
+                ape.py 123 123</p>
+            <p>It returns an output of 11210.This is then fetched and displayed on the website. <br>
+               <span style="color: coral;">However if the user tampers with the query, he can cause the server to run arbitiary commands.</span> </p>
+            <p>Let us suppose he Injects the following command & echo `whoami` & in the url. <br>
+               <span style="color: coral;">The resulting URL becomes:</span> <br>
+               <span style="color:blue"><u>https://www.example.com/Cycles?ID=123 & echo `whoami` & &countryID=123</u></span> 
+            </p>
+            <p><span style="color: red;">This is run on the server end as, <br>
+            ape.py 123 & echo `whoami` & 123 </span>
+                <br>
+            <span style="color:tomato;">This results in :  <br>
+            11210 <br>    www-data</span>
+            </p>
+            <p>You may note that not only did it return the data, but the name of the user, with whose privileges commands are being run.</p>
+            <p>Some other useful commands that you could use :</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Process</th>
+                        <th>Linux</th>
+                        <th>Windows</th>
+                    </tr>
+                    <tr>
+                        <td>Operating System</td>
+                        <td>uname -a</td>
+                        <td>ver</td>
+                    </tr>
+                    <tr>
+                        <td>Network Config</td>
+                        <td>ifconfig</td>
+                        <td>ifconfig /all</td>
+                    </tr>
+                    <tr>
+                        <td>File Contents</td>
+                        <td>cat filename</td>
+                        <td>cat filename</td>
+                    </tr>
+                    <tr>
+                        <td>List Files</td>
+                        <td>ls</td>
+                        <td>ls</td>
+                    </tr>
+                    <tr>
+                        <td>Running Processes</td>
+                        <td>ps -ef</td>
+                        <td>takslist</td>
+                    </tr>
+            </table>
+        </div>
+        <div class="container" style="margin-top: 2rem;">
+            <h3>Prevention</h3>
+            <p>One of the ways of preventing Command injection is by sanitizing the input and perforing validation on it. <br>
+                The second way could be to never call out OS commands from the application. <br>
+                The best Ways to validate are:</p>
+                <ol>
+                    <li>Performing validation against a white list.</li>
+                    <li>Validating the input is a type that you specify(could be just a float/int,etc</li>
+                    <li>Validating that the input doesn't have any special character, white space,etc.</li>
+                </ol>            
+        </div> 
+        <div class="container" style="background-color:#dddddd; border-radius: 10px;" >
+            <h3>Blind OS Command Injection</h3>
+            <p>Sometimes, it is also possible that a web application is vulnerable to OS Command Injection but doesn't just throw the information out.</p>
+            <p>For instance, while submitting a feedback form, the attacker injects <strong>& `whoami` &</strong> into the contents.But after the submission of the form there is nothing that the server has to return so the attacker can't validate whether the application is vulnerable.
+            <br>
+            Fortunately there are other ways to check for Blink OS Command Injection. Learn about it <a href="/attacks/blind-os-command-injection"><u>here</u></a></p>
+        </div>
+        <div class="container">
+            <h3>How to Inject Commands</h3>
+            <p>I've been showing you commands beginning and terminating with |. <br>
+                This is equivalent to <strong>OR</strong> in linux and windows. <br>
+                You can try different command seperators. Below is the list of separators that you could try.</p>
+            <ul>
+                <li><strong>|</strong></li>
+                <li><strong>&</strong></li>
+                <li><strong>||</strong></li>
+                <li><strong>&&</strong></li>
+            </ul>
+            <p>The following only works on unix-based systems. <br> </p>
+            <ul>
+                <li><span style="color: blue;">`command name`</span>  <br> <span style="color: blue;">eg `whoami`</span> </li>
+                <li><span style="color: tomato;">$(command name) </span> <br> <span style="color:tomato"> eg $(whoami) </span> </li>
+            </ul>                   
+        </div>
+    </body>
+</html>

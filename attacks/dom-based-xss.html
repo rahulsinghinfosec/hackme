@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>DOM Based Cross Site Scripting</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+        <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="index.html">ICON_LOGO</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="../blog.html">BLOG</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../about.html">ABOUT ME</a>
+                  </li>
+              </ul>
+            </div>
+          </nav>
+        <header class="container">
+            <h1>DOM Based Cross Site Scripting</h1>
+        </header>
+        <div class="container">
+            <h3>Description:</h3>
+            <p>This type of attack occurs because the client-side javascript has access to the Document Object Model (DOM) rendered as a part of the response.Client Side Javascript may pe performing some calulation,manipuation,etc on a part of the DOM and rendring it on the webpage to make it look dynamic.</p>
+            <p><strong>Example :</strong> Consider the url: <a href="#">www.example.com/?q=hey+there</a><br> <br>
+                Suppose the website designer has written a javascript code that takes the value of "q" and then displays it.</p>
+
+             <h5 style="color: chocolate;">   &lt;script&gt;
+                    var url = document.location;
+                    url = unescape(url);
+                    var query = url.substring(url.indexOf(‘q=’) + 8, url.length);
+                    document.write(query)
+                   &lt;/script&gt;</h5>
+            <p>This script parses the URL and extracts the value of <strong>q</strong> and writes it to the HTML Source code.This is similar to Reflected XSS, but involves the use of client-side javascript that changes the contents of the Webpage.</p>
+            <p>Now if a malicious actor, adds a malicious payload, this causes the payload to be dynamically written to the webpage and thus making it vulnerable.</p>
+        </div>
+        <div class="container">
+            <h3>Preventive Measures:</h3>
+            <p>DOM based XSS can be prevented by:</p>
+            <ul>
+                <li>Avoiding user controled input</li>
+                <li>Avoiding unsafe properties like document.innerHTML, document.write and using document.innerText,document.textContent instead</li>
+            </ul>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Web Attacks</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>    
+    <style>
+        a
+        {
+            display: block;
+        }
+        .card-img
+        {
+        max-width: 179px;
+        max-height: 76px;
+        }
+    </style>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="index.html"><img src="images/Hackme.png" style="max-width: 2.5rem;margin-left: 1rem;"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="blog.html">BLOG</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">ABOUT ME</a>
+                  </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    BOOKS
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="security.html">Security</a>
+                    <a class="dropdown-item" href="reversengineering.html">Reverse Engineering</a>
+                    <a class="dropdown-item" href="web-attacks.html">Web Attacks</a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        <header class="container" style="margin-top:1rem;">
+          <h4 style="display: inline;"> Web applications</h4> <p style="display: inline;">are an important part of our lives. These days if one has any problem,one can look it up on the internet. But what if the Google or Bing it unavailable. If you haven't thought about it before,<strong> Google went down for an hour (in early 2021)</strong>. <br> People were unable to access the services that google provided , be it drive,email, cloud computing ,etc.People were locked out of their own houses as they were using Google Powered IoT devices for their lock systems.  </p>
+          <p><mark>If you think that your website is safe, then think again. Study the following topics and check it out for yourself</mark>.</p>
+          <p>If you want to be a penetration tester,then Web Site Pentesting is not going to leave you anytime soon.</p>
+        </header>
+        <div class="container" style="margin-top: 1rem;">
+            <h1>Topics</h1>
+        </div>
+        <div class="container" style="margin-top: 1rem;">
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row no-gutters">
+                  <div class="col-4">
+                    <img src="images/Security/a.png" class="card-img" alt="card">
+                  </div>
+                  <div class="col-8">
+                    <div class="card-body">
+                      <h5 class="card-title"><a href="attacks/stages.html">5 Stages</a></h5>
+                      <p class="card-text">Learn About the 5 stages of Hacking.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card mb-3" style="max-width: 540px;">
+                <div class="row no-gutters">
+                  <div class="col-4">
+                    <img src="images/Security/b.png" class="card-img" alt="card">
+                  </div>
+                  <div class="col-8">
+                    <div class="card-body">
+                      <h5 class="card-title"><a href="attacks/lfi.html">Local File Inclusion</a></h5>
+                      <p class="card-text">Introduction to Local File Inclusion Vulnerability.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card mb-3" style="max-width: 540px;">
+                <div class="row no-gutters">
+                  <div class="col-4">
+                    <img src="images/Security/f.png" class="card-img" alt="card">
+                  </div>
+                  <div class="col-8">
+                    <div class="card-body">
+                      <h5 class="card-title"><a href="attacks/java-serialization-unserialization.html">Java Serialzation and Deserialzation</a></h5>
+                      <p class="card-text">Introduction to Java Serialzation and Deserialzation.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card mb-3" style="max-width: 540px;">
+                <div class="row no-gutters">
+                  <div class="col-4">
+                    <img src="images/Security/e.png" class="card-img" alt="card">
+                  </div>
+                  <div class="col-8">
+                    <div class="card-body">
+                      <h5 class="card-title"><a href="attacks/jwt.html">JWT: Json Web Tokens</a></h5>
+                      <p class="card-text">It is  a compact and self-contained way for securely transmitting information between parties as a JSON object.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card mb-3" style="max-width: 540px;">
+                <div class="row no-gutters">
+                  <div class="col-4">
+                    <img src="images/Security/c.png" class="card-img" alt="card">
+                  </div>
+                  <div class="col-8">
+                    <div class="card-body">
+                      <h5 class="card-title"><a href="attacks/information-disclosure.html">Information Disclosure</a></h5>
+                      <p class="card-text">Learn how leaving some sensitive information hard-coded can leave you vulnerable.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card mb-3" style="max-width: 540px;">
+                <div class="row no-gutters">
+                  <div class="col-4">
+                    <img src="images/Security/d.png" class="card-img" alt="card">
+                  </div>
+                  <div class="col-8">
+                    <div class="card-body">
+                      <h5 class="card-title"><a href="attacks/os-command-injection.html">OS Command Injection</a></h5>
+                      <p class="card-text">Learn how an attacker can use this Vulnerability to execute malicious commands.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card mb-3" style="max-width: 540px;">
+                <div class="row no-gutters">
+                  <div class="col-4">
+                    <img src="images/Security/e.png" class="card-img" alt="card">
+                  </div>
+                  <div class="col-8">
+                    <div class="card-body">
+                      <h5 class="card-title"><a href="attacks/blind-os-command-injection.html">Blind OS Command Injection</a></h5>
+                      <p class="card-text">Even if results aren't being fetched to us, doesn't mean the site isn't vulnerable.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card mb-3" style="max-width: 540px;">
+                <div class="row no-gutters">
+                  <div class="col-4">
+                    <img src="images/Security/f.png" class="card-img" alt="card">
+                  </div>
+                  <div class="col-8">
+                    <div class="card-body">
+                      <h5 class="card-title"><a href="attacks/code-injection.html">Code Injection</a></h5>
+                      <p class="card-text">Similar to Command Injection, but here we are restriced by a particlur language interpreter.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card mb-3" style="max-width: 540px;">
+                <div class="row no-gutters">
+                  <div class="col-4">
+                    <img src="images/Security/g.png" class="card-img" alt="card">
+                  </div>
+                  <div class="col-8">
+                    <div class="card-body">
+                      <h5 class="card-title"><a href="attacks/cross-site-scripting-xss.html">Cross Site Scripting</a></h5>
+                      <p class="card-text">XSS allows malicious actors to inject malicious javascript code to the web applications.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+        </div>
+    </body>
+</html>       
+    </body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Static vs Dynamic Analysis</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+       </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="../index.html"><img src="../images/Hackme.png" style="max-width: 2.5rem;margin-left: 1rem;" alt="logo"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="../blog.html">BLOG</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../about.html">ABOUT ME</a>
+                  </li>
+              </ul>
+            </div>
+          </nav>  
+        <header class="container">
+            <h1>Static vs Dynamic Analysis</h1>
+            <img src="" alt="">
+        </header>
+        <div class="container">
+            <h3><u>Description</u></h3>
+            <p>After the code has been compiled it becomes necessary to perform Code Analysis to ensure that it is performing in a favourable way.</p>
+            <p>In Reverse Engineering, we analyse code to either find loop holes in the target application/code,etc. or to audit the security performace, or even to optimise its performance.</p>
+        </div>
+        <div class="container">
+            <h3><u>Types of Analysis</u></h3>
+            <p><strong>There are two ways to perform analysis.</strong></p>
+            <ul>
+                <li><strong>Static Analysis</strong></li>
+                <li><strong>Dynamic Analysis</strong></li>
+            </ul>
+        </div>
+        <div class="container" id="static-analysis">
+            <h3><u>Static Analysis</u></h3>
+            <p>If you are performing analysis of a program without executing it, then this type of analysis is called <u>Static Analysis.</u></p>
+            <p><strong>But why would you analyse a program without executing it?</strong></p>
+            <ol>
+                <li>It can be used to analyse the <strong>Control Flow </strong>of the program to check what piece of the code would get executed and in what sequence.</li>
+                <li>It can be used to analyse <strong> Data Flow </strong>, to check how the information would flow within a program and across programs.</li>
+                <li>It can be used for a quicker turn around for fixes.</li>
+                <li>Static analysis can be used to  find weaknesses in the code at the exact location.</li>
+                <li>There are some automated tools in the market that can make your job easy.</li>
+            </ol>
+            <h5>Disadvantages of Static Analysis</h5>
+            <ol>
+                <li>Since the code is being analysed without being executed,it does not help to find vulnerabilities introduced in the runtime environment.</li>
+                <li>It is a bit tedious and time consuming process, if done manually.</li>
+                <li>Automated tools do not support all programming languages.</li>
+                <li>Automated tools are likely to provide false positives and negatives.</li>
+            </ol>
+            <p class="text-muted">Some tools that can be used for static analysis: <strong>ghidra,gdb,radare2,IDA Pro,etc.</strong></p>
+        </div>
+        <div class="container" id="dynamic-analysis">
+            <h3><u>Dynamic Analysis</u></h3>
+            <p>The analysis performed on a program during its execution is called Dynamic Analysis. It analyses the properties of a program while it is executing.It is more precise than static analysis as there are lot other things that come into view during execution like dynamic binding,threads,polymorphism, etc</p>
+            <p>The advantages of Dynamic Analysis are:</p>
+            <ol>
+                <li>Can be used to identify vulnerabilities in a runtime environment. </li>
+                <li>Can help to identify false negatives that occured in the static code analysis.</li>
+                <li>Can be used to validate the vulnerabilites found during static analysis. </li>
+            </ol>
+            <p>It has a down side too.</p>
+            <ol>
+                <li>It is more difficult to trace the vulnerability back to the exact location in the code, taking longer to fix the problem</li>
+                <li>Doing Dynamic analysis on a malicious program can result in your computer being infected to it.</li>
+            </ol>
+            <p class="text-muted">Tools like <strong>OllyDbg,etc.</strong>can help you perform Dynamic Analysis.</p>
+        </div>
+    </body>
+</html>

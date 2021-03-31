@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Code Injection</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <link href="../css/styles.css" rel="stylesheet" />
+        <link href="../js/scripts.js">
+        <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+    <style>
+        img
+        {
+            display: flex;
+            margin:5px auto 10px auto;
+        }
+    </style>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="index.html">ICON_LOGO</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="../blog.html">BLOG</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../about.html">ABOUT ME</a>
+                  </li>
+              </ul>
+            </div>
+          </nav>
+        <header class="container">
+            <h1>Code Injection</h1>
+            <!-- <img src="https://www.pccybersecurity.com/images/blog/code-injection.png" alt="Code Injection" style="max-width: 100%;"> -->
+        </header>
+        <div class="container">
+            <h3>Description</h3>
+            <p>This is also called Remote Code Execution[RCE]. This attack occurs when the attacker is able to exploit an input validation flaw in a software or a web application and execute malicious code. This can be leveraged to run OS commands in the context of a web application.</p>
+            <h5><u>This can occur beacause:</u></h5>
+            <ul>
+                <li>There is lack of proper input validation.</li>
+                <li>Application dynamically evaluates the unsanitized user input.</li>
+            </ul>
+        </div>
+        <div class="container">
+            <h3>How to find the attack Surface?</h3>
+            <p>If any application directly executes or evaluates any user supplied input, without validating it first, is vulnerable to code injection.</p>
+            <h5<u> How is it any different from OS Command Injection</u></h5>
+            <p>When we talk about command injection, we talk in terms of extending the default functionality of a application to execute commands(generally in terms of a shell). Code injection on the other hand is restricted by to the functionality provided by a langauage(eg php,python,perl,java,etc).
+               <br> So, if you are able to expoit the web application using the commands of <strong>PHP</strong>, you are restricted to the commands that <strong>PHP</strong> is capable of executing. <em>You can't run Python commands and expect them to run for you.</em></p>
+        </div>
+        <div class="container">
+            <h3>How does this vulenrability arise?</h3>
+            <p class="text-muted">Lets take an example of PHP Code Injection.</p>
+            <p>Lets consider a webpage that takes in a query and sends it to the server for evaluation and then returns an output. </p>
+            <a href="#">http://www.example.com/index.php?name=user1</a>
+            <p>The code that runs on the server for after the query is submitted is: <br> 
+             <span> &lt;?php eval("echo ".$_REQUEST["name"].s";"); ?&gt; </span>   </p>
+            <p>PHP interpreter evaluates the value passed to the name paramater and then echo's it out.
+            <br>For example in this case it displays <strong>user1</strong> as that was passed a value to the <strong>name</strong>paramater in the url</p>
+            <p><strong>Now coming towards the attack vector.</strong>
+            <br>Since there is no input sanitization performed on the input value and the server is just performing operations on what is being provided to it in the URL,an attacker can leverage it to get to execute malicious commands.</p>
+            <p><strong>Example:</strong>
+            <a href="#">http://www.example.com/index.php?name=user1;phpinfo();</a> <br>
+            This will cause the php interpreter to <strong>echo user1</strong> and then <strong>print the compiled information about the php environment</strong>.</p>
+        </div>
+        <div class="container">
+            <h3>Further Exploitation</h3>
+            <p>Now that the attacker knows that the web application is vulneranble to code-injection, he can leverage it further to his advantage. Fortunately <em>(for the attacker)</em> PHP allows the execution of OS Commands. The OS commands can be executed by invoking the <strong>system();</strong> function.</p>
+            <p><strong>Example:</strong> <br>
+                <a href="#">http://www.example.com/index.php?name=user1;system('ls');</a> <br>
+                This <strong>echo's user1</strong> followed by <strong>printing all the files present in the current directory.</strong></p>
+        </div>
+        <div class="container">
+            <h3>Preventive Measures:</h3>
+            <p>The Following Preventive measures can be taken to prevent Code Injection Attacks.</p>
+            <ul>
+                <li>Treat all user input as untrusted, and perform sanitization and validation on it. Try to compare user input against a white list.</li>
+                <li>Avoid evaluation functions. Try to avoid eval() and equivalent functions.</li>
+                <li>Limit interpreter functionality to prevent escalation of to os command injection.For example, diable system() function.</li>
+                <li>You could use a dynamic web vulnerability scanner to check for code injection.</li>
+            </ul>
+        </div>
+    </body>
+</html>

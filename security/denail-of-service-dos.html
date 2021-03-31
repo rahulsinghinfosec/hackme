@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Denial Of Service</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <link href="../css/styles.css" rel="stylesheet" />
+        <link href="../js/scripts.js">
+        <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+       </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="../../index.html"><img src="../images/Hackme.png" style="max-width: 2.5rem; margin-left: 1rem;" alt="logo"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="../../blog.html">BLOG</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../../about.html">ABOUT ME</a>
+                  </li>
+              </ul>
+            </div>
+          </nav>
+        <header class="container">
+            <h1>Denial Of Service</h1>
+            <img src="..." alt="..." class="img-fluid">
+        </header>
+        <div class="container">
+            <h3>Description:</h3>
+            <p>Abbreviated as DoS,Denial of Service is literally denial of services. The services could be websites, web-servers,network resources,etc. and make them inaccessible for its users.</p>
+            <p>It can be accomplished using:</p>
+            <ul>
+                <li>Take advantage of design vuln. or a failure.</li>
+                <li>Hitting the service all at once(like done by botnets to bring a service down)</li>
+            </ul>
+            <h3>Types of DoS</h3>
+            <ul>
+                <li>Friendly DoS:<span class="text-muted">This is DoS caused unintentionally.For example when all the users try to access a resource in a network making it unavailable to use.</span></li>
+                <li>Network DoS: <span class="text-muted">This occurs when your network equipments overwork,leading it to failure. For example, spanning tree protocol might have been disabled causing it to overwork.</span></li>
+                <li>Bandwidth Dos:<span class="text-muted">This occurs due to lack of bandwidth. For example,Everyone might be wanting to download all at once and due to lack of bandwidth the download speed comes to a crawl.</span></li>
+            </ul>
+
+        <div class="container">
+            <h3>Distributed Denial Of Service :</h3>
+            <p>Abbreivated as DDos,Distributed Denial Of Service occurs when the service gets denied to people because requests are coming in from multiple sources at the same time.It can cause the serive (web server,ftp-server,etc.) to come to a shutdown entirely.
+                <br> <span class="text-muted">DDos is quite common, and can be accomplished by the use of bots.</span>
+            </p>
+            <h3>DDos Amplification</h3>
+            <p>A DDoS Amplification attack is an attack where a small payload genreated by the attacker gets amplified by the time it reaches the victim.<u>This generally occurs by the exploitation of 3rd party services (or older protocols that don't have much security features)</u></p>
+            <p><strong>For Example : An attacker requests for Domain keys from mulitple DNS servers, but by spoofing himself as a web-server(W). Now the payload is small(request for DNS keys).</strong></p>
+            <img src="../../images/Security/dos1.png" alt="" class="img-fluid" style="max-width: 900px; max-height: 300px; display: flex; margin: 0 auto 0 auto;">
+            <p><strong>When the DNS server responds with the keys, the response is amplified. It can overwhelm the web-server eventually leading it to a point of failure.</strong></p>
+            <img src="../../images/Security/dos2.png" alt="" class="img-fluid" style="max-width: 900px; max-height: 300px; display: flex; margin: 0 auto 0 auto;">
+        </div>
+    </body>
+</html>

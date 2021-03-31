@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Rootkits</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <link href="../css/styles.css" rel="stylesheet" />
+        <link href="../js/scripts.js">
+        <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+       <style>
+            img
+            {
+                display: flex;
+                margin:10px auto 10px auto;
+            }
+        </style>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="../../index.html"><img src="../images/Hackme.png" style="max-width: 2.5rem; margin-left: 1rem;" alt="logo"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="../../blog.html">BLOG</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../../about.html">ABOUT ME</a>
+                  </li>
+              </ul>
+            </div>
+          </nav>
+        <header class="container">
+            <h1>Rootkit</h1>
+            <img src="https://blog.emsisoft.com/wp-content/uploads/2018/01/what-is-a-rootkit-blog-730x411.png" alt="Rootkit" class="img-fluid" style="max-width:100%;max-height:500px">
+        </header>
+        <div class="container">
+            <h1>Description</h1>
+            <p><u>The highest Level user of a Windows machine is called the Administrator, while on a unix/linux device it is called root. This is where the rootkit gets its name from.</u> </p> 
+            <p>A <strong>rootkit </strong> goes to the lowest level of the OS and <strong>modifies its kernel</strong>. 
+                It becomes a part of the kernel and can therefore becomes invisible to the OS itself.Which means it won't be visible in the Task Manager also.
+                <strong>This can help it from antivirus detection.</strong></p> 
+            <p>These days malwares are built with rootkits so that it becomes extremly difficult to remove them. </p>
+            <p><em>For example: Even if you do manage to find the malware and proceed to remove/delete it, it throws an "Access denied" error as it has become a part of the OS itself.<u>Even the Adminstrator doesn't have the privilege to remove it.</u></em> </p>    
+        </div>
+        <div class="container">
+            <h3>Prevention</h3>
+            <p>You can mitigate the installation of a rootkit by:</p>
+            <ul>
+                <li>Update The Antivirus, so that it has the latest file signatures.</li>
+                <li>Never Disable Secure Boot on your computer.</li>
+            </ul>
+            <p><strong>Even if it gets past your defences and you manage to find it, you would need a very specific root-kit remover for that rootkit.</strong></p>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Information Disclosure</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+        <style>
+            img
+            {
+                display: flex;
+                margin: 5px auto 10px auto;
+            }
+        </style>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="index.html">ICON_LOGO</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="../blog.html">BLOG</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../about.html">ABOUT ME</a>
+                  </li>
+              </ul>
+            </div>
+          </nav>
+        <header class="container" style="margin-top: 1rem;">
+            <h1>Information Disclosure</h1>
+            <img src="https://portswigger.net/web-security/information-disclosure/images/information-disclosure-.jpg" alt="Information Disclosure" style="max-width: 100%;">
+        </header>
+        <div class="container" style="margin-top: 2rem;">
+            <h3>Overview:</h3>
+            <p>If a web application fails to protect its senstive data and exposes it to the users, then the application is said to disclose information.
+                <br>
+                The sensitive information could be:
+            </p>
+            <ul>
+                <li>Session Tokens</li>
+                <li>Details about the application framework</li>
+                <li>User data (passwords/username/email id,etc)</li>
+                <li>Web-Sever Version Number and backend Language Used(eg php)</li>
+                <li>Sensitive Business or Commercial Data</li>
+            </ul>
+            <p>Though this vulnerability cannot be directly exploited,yet it does provide the attacker with more information about the application/users,etc which the attacker can use to leverage the application.
+                <br>
+                Other Examples of serious information Disclosure includes:
+            </p>
+            <ul>
+                <li>Revealing the hidden directories, via robots.txt file.</li>
+                <li>Providing access to the source code and other files.</li>
+                <li>Hard-coding credentials,API keys on the source code.</li>
+            </ul>
+        </div>
+        <div class="container">
+            <h3>Causes:</h3>
+            <p>There could be various causes that lead to information disclosure.A few are mentioned below.</p>
+            <ul>
+                <li>Insecure configuration the website/database/framework correctly.</li>
+                <li>Failure to remove hard-coded details/content and other internal important details from the public view.</li>
+                <li>There is a flaw in either the entire architecture or some parts of the website.</li>
+            </ul>
+            <p style="color: red;">For example the following snippet of the source code of a webpage has hard coded detils, about the username and the password, in the source code of the webpage.</p>
+            <!-- username:admin
+            password:admin -->
+            <img src="../images/webattacks/inforamation.png" alt="Information Disclosure" class="img-fluid">
+        </div>
+        <div class="container">
+            <h3>Prevention:</h3>
+            <p>Since there are so many ways that a website could be vulnerable to information disclosure, there is no <strong>one</strong> way to prevent this.</p>
+            <p>A few ways through which this can be prevented are:</p>
+            <ul>
+                <li>Full inspection of the site for hard-coded detials that could be of some use to the attacker. This could be credentials/cookies/session tokens/ids,etc.</li>
+                <li> Auditing the code for potential disclosures. Manually try to produce an error and see how the application responds. Is it throwing out some sensitve data?</li>
+                <li>Double check the configuration files, and ensure that any third party application is upto date.</li>
+                <li>Check that the error messages thrown out are not too sepcific, targetting at a particular process/application. Use generic messages as much as possible.</li>
+                <li>Ensure that the developers are well versed with what to display to the public and what to keep private.</li>
+            </ul>
+        </div>
+    </body>
+</html>

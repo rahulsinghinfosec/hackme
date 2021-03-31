@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Java Insecure Deserialization </title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+       <style>
+            header
+            {
+                margin-top: 5px;
+            }
+            ol
+            {
+                padding-top:8px;
+                padding-bottom:8px;
+                background-color: lightgray;
+                border-radius: 10px;
+            }
+            div h3
+            {
+                background-color: #343a40;
+                padding: 5px 0px 5px 5px;
+                color:white;
+                border-radius: 10px;
+            }
+            
+            .a1a1
+            {
+                margin-top: 1rem;
+                padding:0px 0px 10px 5px;
+                border-radius: 10px;
+            }
+            img
+            {
+                margin: 0 auto 0 auto;
+                display: flex;
+                border-radius: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="index.html">ICON_LOGO</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="../blog.html">BLOG</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../about.html">ABOUT ME</a>
+                  </li>
+              </ul>
+            </div>
+          </nav>
+        <header class="container">
+            <h1 class="display-5">Insecure Deserialization </h1>
+            <img src="../images/webattacks/" alt="Java Deserialization" class="img-fluid" style="max-height: 500px; max-width: 100%;">
+        </header>
+        <div class="container a1a1">
+            <h3>Understanding Objects</h3>
+            <p>Object Oriented Programming Languages like Java operate on the concept of Objects.
+                <br>
+                An Object is another name for things, that represent real world entities. It has a <strong>state,</strong><strong>behaviour,</strong> <strong>and an identity.</strong>
+            </p>
+            <ol>
+                <li>State : Represented by the attributes in the objects.</li>
+                <li>Behaviour : Represented by Methods, through which you can call an Object.</li>
+                <li>Identity : Gives unique name to an object, through which it can be identified.</li>
+            </ol>
+            <p>Let us supppose we wish to see the serialized form of the following sinppet of code.</p>
+                <img src="../images/webattacks/object.png" alt="Java Object" class="img-fluid" >
+        </div>
+        <div class="container a1a1">
+                <h3>Understanding Byte Stream</h3>
+                <p>Byte Streams are used to perform input and output of 8-bit bytes.
+                    <br>
+                All byte streams are desendents of <a href="https://docs.oracle.com/javase/tutorial/essential/io/streams.html">InputStream and Output Stream</a></p>
+                <p>Objects are converted to byte streams (which are generally hex equivalents of the object defined)</p>
+                <p>For example here is a snippet of how a byte stream would look like to you.</p>
+                <img src="../images/webattacks/bytestream.png" alt="Byte Stream">
+        </div>
+        <div class="container a1a1">
+            <h3>Serialization Of Data</h3>
+            <p>Conversion of data into byte stream is called serialization.
+                <br>
+                This is done so that it can be stored in the database/file/server or if it is meant to be sent across the netowork.
+            </p>
+            <p>Java makes use of <strong>java.io.Serializable </strong>to implement serialization.</p>
+        </div>
+        <div class="container a1a1">
+            <h3>Deserialization of Data</h3>
+            <p>The process of converting sequence of byte streams back to its original form (Objects here) is called Deserialization.
+                <br>
+            The stream of data comprises metadata, the type of infomation, and the values as well which is converted back to object/s.</p> 
+        </div>
+        <div class="container a1a1">
+            <h3>The Vulnerability</h3>
+            <p>Java Deserialization Vulnerability is also known as <strong>Java Unserialize flaw</strong>and <strong>Java Object Serialize Flaw</strong>.
+            <br>
+                This occurs when the the application performs deserialization without performing any check on the byte stream (whether it is the same byte stream that was serialized).
+            </p>
+            <p>If a user manages to upload,modify or even input a well crafted payload, it could give him/her remote access to the server.</p>
+        </div>
+        <div class="container a1a1">
+            <h3>Want to know more?</h3>
+            <a href="https://blog.cmnatic.co.uk/posts/exploiting-java-deserialization-windows-demo/">CMNatic's Ramblings</a>
+            <a href="https://owasp.org/www-community/vulnerabilities/Deserialization_of_untrusted_data" style="display:block">OWASP</a>
+        </div>
+        <footer></footer>
+    </body>
+</html>

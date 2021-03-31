@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Reverse Engineering : An Introduction (Continued)</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <link href="../css/styles.css" rel="stylesheet" />
+        <link href="../js/scripts.js">
+        <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+       <style>
+            header h1
+            {
+                margin-top:2.5rem;
+                margin-bottom: 2rem;
+                font-weight: 800;
+            }
+            header img
+            {
+                margin-left: auto;
+                margin-right: auto;
+                display: flex;
+                margin-bottom: 2rem;
+            }
+            img
+            {
+                display: flex;margin:10px auto 10px auto;
+            }
+            div h3
+            {
+                background-color: #343a40;
+                color:white;
+                border-radius: 10px;
+                padding: 3px 0px 5px 7px;
+            }
+              @media (max-width: 480px)
+            {
+                body
+                {
+                    margin-left:0;
+                }
+            }
+            @media (max-width: 768px) {
+                body
+                {
+                    margin-left:0px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="../index.html"><img src="../images/Hackme.png" style="max-width: 2.5rem;margin-left: 1rem;" alt="logo"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="../blog.html">BLOG</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../about.html">ABOUT ME</a>
+                  </li>
+              </ul>
+            </div>
+          </nav> 
+        <header class="container">
+            <h1>Reverse Engineering : An Introduction (Continued)</h1>
+            <img src="https://miro.medium.com/max/1000/1*yHcx42CBNd1xn8hYBAoS2w.jpeg" alt="Reverse Enginnering" class="img-fluid">
+            <h4><small class="text-muted">In case you missed the first half, you can read it <a href="/reverseEngineering/intro">here</a>.</small></h4>
+        </header>
+        <div class="container">
+            <h3>Registers</h3>
+            <p>Since the language here is assembly so we’ll mostly be dealing with registers here.A register can be defined as a fast memory location that can be used to store data and perform operations upon them. They are present within the processor.</p>
+            <p>For a x86–64 architecture, the registers are 64 bit and there are 16 registers that are provided to us by Intel. Although these are 64 bit , but we can reference parts of them as per our needs.</p>
+            <p>Example: we could reference them as 32 bits, or 16 bits or even 8 bits (More of this ahead).</p>
+            <img src="../images/reverse/register.png" alt="Registers" class="img-thumbnail" style="display: flex; margin: 10px auto 10px auto;">
+            <p><u>The first 6 registers, up-to %rdi, are general purpose registers.They store values for temporary storage and computation purpose.%rsp is the stack pointer. It always points to the top of the current stack frame.While %rbp is called the frame pointer or the base pointer. It points at the base of the stack frame.</u></p>
+            <p><span class="text-muted">Now as we discussed previously, we’ll often see our instructions appended with characters.So lets discuss the instructions first(though not all).</span></p>
+        </div>
+        <div class="container">
+            <ol>
+                <li><strong>leaq source , destination</strong></li>
+                <p>The instruction actually is “lea” and it has been appended with “q” to mean a quad word which means that there is a 64 bit register involved.
+                    <br>
+                    The instruction sets the destination to the address denoted by the expression in the source
+                </p>
+                <img src="../images/reverse/leaq.png" alt="lea instruction" >
+                <li><strong>subq source, destination</strong></li>
+                <p>This is an instruction to perform subtraction. 
+                    <br>
+                    Equivalent to destination = destination - source
+                </p>
+                <img src="../images/reverse/subq.png" alt="sub instruction">
+                <li><strong>addq source destination</strong></li>
+                <p>This is an instruction to perform addition.
+                    <br>
+                    Equivalent to destination = destination + source
+                </p>
+                <img src="../images/reverse/add.png" alt="addition instruction">
+                <li><strong>imulq source, destination</strong></li>
+                <p>This instruction performs multiplication.
+                    <br>
+                    Equivalent to destination = destination * source
+                </p>
+                <img src="../images/reverse/imult.png" alt="multiplication Operation">
+            </ol>
+            <p><span class="text-muted">There are other instructions as well like sar, xor, and, or, leave, etc. but we won’t be requiring them right now.</span></p>
+        </div> 
+        <div class="container">
+            <h3>Writing and Understanding our First C program</h3>
+            <img src="../images/reverse/1c.png" alt="First C program">
+            <p>Assembly code for the program</p>
+            <img src="../images/reverse/1out.png" alt="Assembly Code">
+            <p><mark>Lets look at the code and analyze it.You’ll always see the first 2 and the last 2 lines in the output. They are called the prologue and the epilogue of the functions.They are quite important and is a topic for another time.</mark></p>
+            <p><mark>push operation pushes the item onto the stack, while pop operation pops the item from the stack.</mark></p>
+            <ul>
+                <li><strong>movl $0xa,-0x4(%rbp)</strong>
+                    <ul>
+                        <li>-0x4(%rbp) represnts a momory location.</li>
+                        <li>movl transfers 0xa (hex equivalent of 10 to the location -0x4(%rbp))</li>
+                    </ul>
+                </li>
+                <li><strong>mov $0x0,%ea</strong>
+                    <ul>
+                        <li>This represents return 0</li>
+                    </ul>
+                </li>
+                <li><strong>retq</strong> indicates the end of the program.</li>
+            </ul>
+        </div>
+        <div class="container" style="margin-bottom: 1rem;">
+            <h3>Another C program</h3>
+            <img src="../images/reverse/2c.png" alt="C program">
+            <p>Assembly Code for the program</p>
+            <img src="../images/reverse/2out.png" alt="Assembly Code">
+            <ul>
+                <li><strong>mov $0x7b %eax</strong>
+                <ul>
+                    <li>0x7b is a constant while eax is a register</li>
+                    <li>Decimal equivalent of <abbr title="It is a hex value">0x7b</abbr> is 123</li>
+                    <li>%eax is being set as 123</li>
+                </ul></li>
+            </ul>
+        </div>
+        <!-- <script>
+            images = document.getElementsByTagName("img");
+            for(var i =0;i < images.length;i++)
+            {
+                images[i].classList.add("img-thumbnail");
+            }
+            console.log(images.length)
+        </script> -->
+    </body>
+</html>
